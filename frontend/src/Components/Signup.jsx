@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { UserPlus, Icon, Lock, User, Mail } from "lucide-react";
 import axios from "axios";
 
-const API_URL = "http://localhost:4000";
+const API_URL = "https://taskflow-backend-67so.onrender.com";
 const INITIAL_FORM = { name: "", email: "", password: "" };
 
 function Signup({ onSwitchMode }) {

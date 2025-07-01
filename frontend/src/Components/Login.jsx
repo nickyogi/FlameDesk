@@ -24,7 +24,7 @@ function Login({ onSwitchMode, onSubmit }) {
   ];
 
   const navigate = useNavigate();
-  const url = "http://localhost:4000";
+  const url = "https://taskflow-backend-67so.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
