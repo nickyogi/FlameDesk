@@ -9,7 +9,7 @@ import {
 } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
 
-const API_BASE = "http://localhost:4000/api/tasks";
+const API_BASE = "https://taskflow-backend-67so.onrender.com/api/tasks";
 
 function TaskModal({ isOpen, onClose, taskToEdit, onSave, onLogout }) {
   const DEFAULT_TASK = {
