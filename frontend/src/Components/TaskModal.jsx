@@ -8,8 +8,8 @@ import {
   X,
 } from "lucide-react";
 import React, { useCallback, useEffect, useState } from "react";
+import createAxiosInstance from "../Utils/axios";
 
-const API_BASE = "https://taskflow-backend-67so.onrender.com/api/tasks";
 
 function TaskModal({ isOpen, onClose, taskToEdit, onSave, onLogout }) {
   const DEFAULT_TASK = {
@@ -30,6 +30,7 @@ function TaskModal({ isOpen, onClose, taskToEdit, onSave, onLogout }) {
   const [taskData, setTaskData] = useState(DEFAULT_TASK);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const axios = createAxiosInstance();
   const today = new Date().toISOString().split("T")[0];
 
   useEffect(() => {
@@ -79,26 +80,31 @@ function TaskModal({ isOpen, onClose, taskToEdit, onSave, onLogout }) {
       setError(null);
       try {
         const isEdit = Boolean(taskData.id);
-        const url = isEdit ? `${API_BASE}/${taskData.id}/gp` : `${API_BASE}/gp`;
-        const resp = await fetch(url, {
-          method: isEdit ? "PUT" : "POST",
-          headers: getHeaders(),
-          body: JSON.stringify(taskData),
-        });
-        if (!resp.ok) {
-          if (resp.status === 401) return onLogout?.();
-          const err = await resp.json();
-          throw new Error(err.message || "Failed to save task");
+        const url = isEdit ? `tasks/${taskData.id}/gp` : `tasks/gp`;
+
+      
+        let resp;
+        if (isEdit) {
+          resp = await axios.put(url, taskData);
+        } else {
+          resp = await axios.post(url, taskData);
         }
-        const saved = await resp.json();
+      
+
+        if (resp.status === 401) {
+          return onLogout?.();
+        }
+      
+        const saved = resp.data; 
         onSave?.(saved?.task);
         onClose();
       } catch (err) {
         console.error(err);
-        setError(err.message || "An unexpected error occurred");
+        setError(err.response?.data?.message || err.message || "An unexpected error occurred");
       } finally {
         setLoading(false);
       }
+      
     },
     [taskData, today, getHeaders, onLogout, onSave, onClose]
   );
@@ -109,7 +115,7 @@ function TaskModal({ isOpen, onClose, taskToEdit, onSave, onLogout }) {
     <div className="fixed -top-4 inset-0 backdrop-blur-sm bg-black/20 z-50 flex items-center justify-center p-4">
       <div className="bg-white border border-[#8b91f3]/20 rounded-xl max-w-md w-full shadow-xl relative p-6 animate-fadeIn">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
             {taskData.id ? (
               <Save className="text-[#8b91f3] w-5 h-5" />
             ) : (

@@ -52,7 +52,7 @@ function PendingPage() {
   }, [tasks, sortBy]);
 
   return (
-    <div className="px-2 sm:p-6 min-h-[150vw] sm:min-h-screen overflow-hidden">
+    <div className="px-2 sm:p-6  min-h-[150vw] sm:min-h-screen overflow-hidden">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>

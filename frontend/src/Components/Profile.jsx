@@ -12,6 +12,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Contact from "./Contact";
 
 function Profile({ onLogout, setCurrentUser }) {
   const [profile, setProfile] = useState({ name: "", email: "" });
@@ -117,8 +118,8 @@ function Profile({ onLogout, setCurrentUser }) {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          <section className="bg-white rounded-xl shadow-sm border border-[#8b91f3]/30 p-6">
+        <div className="grid md:grid-cols-2 gap-8 ">
+          <section className="h-fit rounded-xl shadow-sm bg-white border border-[#8b91f3]/30 p-6">
             <div className="flex items-center gap-2 mb-6">
               <UserCircle className="text-[#8b91f3] w-5 h-5" />
               <h2 className="text-xl font-semibold">Personal Information</h2>
@@ -148,7 +149,7 @@ function Profile({ onLogout, setCurrentUser }) {
             </form>
           </section>
 
-          <section className="bg-white rounded-xl shadow-sm border border-[#8b91f3]/30 p-6">
+          <section className="bg-white mt-24 rounded-xl shadow-sm border border-[#8b91f3]/30 p-6">
             <div className="flex items-center gap-2 mb-6">
               <Shield className="text-[#8b91f3] w-5 h-5" />
               <h2 className="text-xl font-semibold">Security</h2>
@@ -192,6 +193,8 @@ function Profile({ onLogout, setCurrentUser }) {
           </section>
         </div>
       </div>
+
+      <Contact profile={profile}/>
     </div>
   );
 }

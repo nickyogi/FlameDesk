@@ -83,7 +83,7 @@ function ChallengeModal({ refreshChallenges, data, setData, addChallenge, setAdd
     <div className="fixed -top-4 inset-0 backdrop-blur-sm bg-black/20 z-50 flex items-center justify-center p-4">
       <div className="bg-white border border-[#8b91f3]/20 rounded-xl max-w-md w-full shadow-xl relative p-6 animate-fadeIn">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
+          <h2 className="text-lg sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
             <Trophy className="text-[#8b91f3] w-5 h-5" />
             {data !== null ? "Take on the Challenge" : "Build Challenge"}
           </h2>
@@ -161,7 +161,7 @@ function ChallengeModal({ refreshChallenges, data, setData, addChallenge, setAdd
               </div>
               <div>
                 <label className="flex items-center gap-1 text-sm font-medium text-gray-700 mb-1">
-                  <Flag className="w-4 h-4 text-[#8b91f3]" /> Challenge Duration
+                  <Flag className="w-4 h-4 text-[#8b91f3]" /> Duration
                 </label>
                 <input
                   type="number"

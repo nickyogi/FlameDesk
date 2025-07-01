@@ -169,12 +169,12 @@ function Layout({ user, onLogout }) {
                     </div>
                   ))
                 ) : (
-                  <div className="flex items-center justify-center gap-8 animate-fade-in">
+                  <div className="flex items-center pr-3 justify-center gap-8 animate-fade-in">
                     <img
                       className="h-32 w-32 object-contain"
                       src="Images/NoChallenges.png"
                     />
-                    <h1 className="text-3xl text-gray-800 font-bold">
+                    <h1 className="text-2xl text-gray-800 font-bold">
                       No Active Challenge
                     </h1>
                   </div>

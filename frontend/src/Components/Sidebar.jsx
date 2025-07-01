@@ -42,7 +42,7 @@ function Sidebar({ user, tasks }) {
             to={path}
             className={({ isActive }) =>
               [
-                "group flex items-center px-4 py-3 mb-3 rounded-xl transition-all duration-300",
+                "group flex items-center px-4 py-3 mb-2 rounded-xl transition-all duration-300",
                 isActive
                   ? "bg-gradient-to-r from-[#fdbd5c]/15 via-[#8b91f3]/15 to-[#bc72f7]/10 border-l-4 border-[#8b91f3] text-purple-900 font-medium shadow-md"
                   : "hover:bg-gradient-to-r from-[#fdbd5c]/20 via-[#8b91f3]/20 to-[#bc72f7]/15 text-gray-700 hover:text-purple-800",
@@ -100,7 +100,7 @@ function Sidebar({ user, tasks }) {
 
           {renderMenuItems()}
 
-          <div className="mt-auto pt-6 lg:block hidden">
+          <div className="-mt-4 lg:block hidden">
             <div className="bg-gradient-to-r from-[#fdf6e3]/50 via-[#eaeaff]/50 to-[#f7ecff]/50 rounded-xl p-4 border border-[#8b91f3]/30">
               <div className="flex items-center gap-2">
                 <div className="p-2 bg-[#e3e0ff] rounded-lg">
@@ -130,9 +130,9 @@ function Sidebar({ user, tasks }) {
       {!mobileOpen && (
         <button
           onClick={() => setMobileOpen(true)}
-          className="fixed md:hidden top-20 left-5 z-50 bg-gradient-to-r from-[#2fb6fd] to-[#bc72f7] text-white p-2 rounded-full shadow-lg hover:opacity-90 transition"
+          className="fixed md:hidden top-20 right-5 z-50 bg-gradient-to-r from-[#2fb6fd] to-[#bc72f7] text-white p-2 rounded-full shadow-lg hover:opacity-90 transition"
         >
-          <Menu className="w-5 h-5" />
+          <Menu className="w-6 h-6" />
         </button>
       )}
 
