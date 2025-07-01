@@ -1,0 +1,31 @@
+{
+      id: "1",
+      name: "Study Challenge",
+      startedOn: "16 July 2025",
+      count: 0,
+      day: 0,
+      image:
+        "https://is1-ssl.mzstatic.com/image/thumb/Purple123/v4/7b/2d/8a/7b2d8aee-cf35-3d5e-e4c8-f2131e7de94d/iMessage_App_Icon-0-0-1x_U007emarketing-0-0-0-0-0-3-sRGB-0-0-0-GLES2_U002c0-512MB-85-181-0-0.png/266x200bb.jpeg",
+      isActive: false,
+    },
+    {
+      id: "2",
+      name: "Cycling Challenge",
+      startedOn: "16 July 2025",
+      count: 0,
+      day: 0,
+      image:
+        "https://is1-ssl.mzstatic.com/image/thumb/Purple123/v4/7b/2d/8a/7b2d8aee-cf35-3d5e-e4c8-f2131e7de94d/iMessage_App_Icon-0-0-1x_U007emarketing-0-0-0-0-0-3-sRGB-0-0-0-GLES2_U002c0-512MB-85-181-0-0.png/266x200bb.jpeg",
+      isActive: false,
+    },
+    {
+      id: "3",
+      name: "Workout Challenge",
+      startedOn: "16 July 2025",
+      count: 25,
+      day: 96,
+      image:
+        "https://is1-ssl.mzstatic.com/image/thumb/Purple123/v4/7b/2d/8a/7b2d8aee-cf35-3d5e-e4c8-f2131e7de94d/iMessage_App_Icon-0-0-1x_U007emarketing-0-0-0-0-0-3-sRGB-0-0-0-GLES2_U002c0-512MB-85-181-0-0.png/266x200bb.jpeg",
+      isActive: false,
+    },
+  ]

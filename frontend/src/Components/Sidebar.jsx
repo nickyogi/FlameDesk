@@ -5,6 +5,7 @@ import {
   ListChecks,
   Menu,
   Sparkles,
+  TrophyIcon,
   X,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -14,9 +15,10 @@ function Sidebar({ user, tasks }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const menuItems = [
-    { text: "Dashboard", path: "/", icon: <Home className="w-5 h-5" /> },
-    { text: "Pending Tasks", path: "/pending", icon: <ListChecks className="w-5 h-5" /> },
-    { text: "Completed Tasks", path: "/complete", icon: <CheckCircle2 className="w-5 h-5" /> },
+    { text: "Dashboard", path: "/", icon: <Home className="w-8 h-8 sm:w-5 sm:h-5" /> },
+    { text: "Pending Tasks", path: "/pending", icon: <ListChecks className="w-8 h-8 sm:w-5 sm:h-5" /> },
+    { text: "Completed Tasks", path: "/complete", icon: <CheckCircle2 className="w-8 h-8 sm:w-5 sm:h-5" /> },
+    { text: "Challenges", path: "/challenges", icon: <TrophyIcon className="w-8 h-8 sm:w-5 sm:h-5" /> },
   ];
 
   const totalTasks = tasks?.length || 0;
@@ -40,7 +42,7 @@ function Sidebar({ user, tasks }) {
             to={path}
             className={({ isActive }) =>
               [
-                "group flex items-center px-4 py-3 rounded-xl transition-all duration-300",
+                "group flex items-center px-4 py-3 mb-3 rounded-xl transition-all duration-300",
                 isActive
                   ? "bg-gradient-to-r from-[#fdbd5c]/15 via-[#8b91f3]/15 to-[#bc72f7]/10 border-l-4 border-[#8b91f3] text-purple-900 font-medium shadow-md"
                   : "hover:bg-gradient-to-r from-[#fdbd5c]/20 via-[#8b91f3]/20 to-[#bc72f7]/15 text-gray-700 hover:text-purple-800",
@@ -49,10 +51,10 @@ function Sidebar({ user, tasks }) {
             }
             onClick={() => setMobileOpen(false)}
           >
-            <span className="transition-transform duration-300 mr-1 group-hover:scale-110 text-[#8b91f3]">
+            <span className="text-2xl transition-transform duration-300 mr-1 group-hover:scale-110 text-indigo-500">
               {icon}
             </span>
-            <span className={`${isMobile ? "block" : "hidden lg:block"} text-sm font-medium ml-2`}>
+            <span className={`${isMobile ? "block" : "hidden lg:block"} text-xl sm:text-sm font-medium ml-2`}>
               {text}
             </span>
           </NavLink>
@@ -79,9 +81,9 @@ function Sidebar({ user, tasks }) {
           </div>
         </div>
 
-        <div className="p-4 space-y-6 overflow-y-auto flex-1">
+        <div className=" p-4 space-y-6 overflow-y-auto flex-1">
           {/* PRODUCTIVITY BAR */}
-          <div className="bg-gradient-to-r from-[#fdf6e3]/50 via-[#e5e9ff]/50 to-[#f9ecff]/50 rounded-xl p-3 border border-[#8b91f3]/30">
+          <div className=" hidden lg:block bg-gradient-to-r from-[#fdf6e3]/50 via-[#e5e9ff]/50 to-[#f9ecff]/50 rounded-xl p-3 border border-[#8b91f3]/30">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-xs font-semibold text-[#8b91f3]">PRODUCTIVITY</h3>
               <span className="text-xs bg-[#e0d8ff] text-[#6f6ae5] px-2 py-0.5 rounded-full">
@@ -128,7 +130,7 @@ function Sidebar({ user, tasks }) {
       {!mobileOpen && (
         <button
           onClick={() => setMobileOpen(true)}
-          className="absolute md:hidden top-5 left-5 z-50 bg-gradient-to-r from-[#fdbd5c] via-[#2fb6fd] to-[#bc72f7] text-white p-2 rounded-full shadow-lg hover:opacity-90 transition"
+          className="fixed md:hidden top-20 left-5 z-50 bg-gradient-to-r from-[#2fb6fd] to-[#bc72f7] text-white p-2 rounded-full shadow-lg hover:opacity-90 transition"
         >
           <Menu className="w-5 h-5" />
         </button>
@@ -137,25 +139,25 @@ function Sidebar({ user, tasks }) {
       {/* MOBILE DRAWER */}
       {mobileOpen && (
         <div className="fixed inset-0 z-40">
-          <div className="fixed inset-0 bg-black/10 backdrop-blur-xl p-4">
+          <div className="fixed inset-0 bg-purple-200/10 backdrop-blur-xl p-4">
             <div className="flex justify-between items-center mb-4 border-b pb-2">
               <h2 className="text-lg font-bold text-[#8b91f3]">Menu</h2>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="text-gray-700 hover:text-[#8b91f3]"
+                className="text-purple-700 hover:text-[#8b91f3]"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <div className="flex items-center gap-3 mb-6 px-3">
-              <div className="w-10 h-10 rounded-full mt-12 bg-gradient-to-br from-[#fdbd5c] via-[#2fb6fd] to-[#bc72f7] flex items-center justify-center text-white font-bold shadow-md">
+              <div className="w-16 h-16 sm:w-10 sm:h-10 rounded-full mt-12 text-2xl sm:regular bg-gradient-to-br from-[#fdbd5c] via-[#2fb6fd] to-[#bc72f7] flex items-center justify-center text-white font-bold shadow-md">
                 {initial}
               </div>
               <div>
-                <h2 className="text-lg font-bold mt-16 text-gray-800">Hey, {username}</h2>
+                <h2 className="text-2xl sm:text-lg font-bold mt-12 sm:mt-16 text-gray-800">Hey, {username}</h2>
                 <p className="text-sm text-[#8b91f3] font-medium flex items-center gap-1">
-                  <Sparkles className="w-3 h-3" /> Let’s crush some tasks!
+                  <Sparkles className="w-5 h-5 sm:w-3 sm:h-3" /> Let’s crush some tasks!
                 </p>
               </div>
             </div>

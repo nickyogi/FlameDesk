@@ -1,14 +1,19 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
-import { Outlet } from "react-router-dom";
-import { Circle, TrendingUp, Clock, HomeIcon } from "lucide-react";
+import { Outlet, useLocation } from "react-router-dom";
+import { Circle, TrendingUp, Clock, HomeIcon, TrophyIcon } from "lucide-react";
 import createAxiosInstance from "../Utils/axios";
+import Challenges from "./Challenges";
 
 function Layout({ user, onLogout }) {
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [onGoingChallenges, setOnGoingChallenges] = useState([]);
+  const [challenges, setChallenges] = useState([]);
+  const location = useLocation().pathname;
+
   const axios = createAxiosInstance();
 
   const fetchTasks = useCallback(async () => {
@@ -46,8 +51,7 @@ function Layout({ user, onLogout }) {
       (t) =>
         t.completed === true ||
         t.completed === 1 ||
-        (typeof t.completed === "string" &&
-          t.completed.toLowerCase() === "yes")
+        (typeof t.completed === "string" && t.completed.toLowerCase() === "yes")
     ).length;
 
     const totalCount = tasks.length;
@@ -110,17 +114,75 @@ function Layout({ user, onLogout }) {
       <Navbar user={user} onLogout={onLogout} />
       <Sidebar user={user} tasks={tasks} onLogout={onLogout} />
 
-      
-
-      <div className="ml-0 xl:ml-64 lg:ml-64 md:ml-16 pt-16 p-3 sm:p-4 md:p-4 transition-all flex duration-300">
+      <div className="ml-0 xl:ml-64 lg:ml-64 md:ml-16 sm:pt-16 p-3 sm:p-4 md:p-4 transition-all flex duration-300">
         <div className="grid grid-cols-1 xl:grid-cols-10 gap-4 sm:gap-7">
           <div className="xl:col-span-7 space-y-3 sm:space-y-4">
-            <Outlet context={{ tasks, refreshTasks: fetchTasks }} />
+            {(location === "/" || location ==="/challenges") && <Challenges
+              challenges={challenges}
+              setChallenges={setChallenges}
+              onGoingChallenges={onGoingChallenges}
+              setOnGoingChallenges={setOnGoingChallenges}
+            />}
+            {location !== "/challenges" && <Outlet context={{ tasks, refreshTasks: fetchTasks }} />}
+            
           </div>
 
           <div className="xl:col-span-3 space-y-4 sm:space-y-6">
             <div className="bg-white rounded-xl p-4 sm:p-5 shadow-sm border border-[#8b91f3]/30">
-              <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800 flex items-center gap-2">
+              <div className="min-h-64">
+                <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800 flex items-center gap-2">
+                  <svg
+                    className="text-indigo-400 w-8 h-8"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M12 6.99999C16.4183 6.99999 20 10.5817 20 15C20 19.4183 16.4183 23 12 23C7.58172 23 4 19.4183 4 15C4 10.5817 7.58172 6.99999 12 6.99999ZM12 8.99999C8.68629 8.99999 6 11.6863 6 15C6 18.3137 8.68629 21 12 21C15.3137 21 18 18.3137 18 15C18 11.6863 15.3137 8.99999 12 8.99999ZM12 10.5L13.3225 13.1797L16.2798 13.6094L14.1399 15.6953L14.645 18.6406L12 17.25L9.35497 18.6406L9.86012 15.6953L7.72025 13.6094L10.6775 13.1797L12 10.5ZM18 1.99999V4.99999L16.6366 6.13755C15.5305 5.5577 14.3025 5.17884 13.0011 5.04948L13 1.99899L18 1.99999ZM11 1.99899L10.9997 5.04939C9.6984 5.17863 8.47046 5.55735 7.36441 6.13703L6 4.99999V1.99999L11 1.99899Z"></path>
+                  </svg>
+                  Challenge Statistics
+                </h3>
+
+                {onGoingChallenges.length > 0 ? (
+                  onGoingChallenges.map((item, index) => (
+                    <div className="space-y-2 sm:space-y-3 mb-5">
+                      <div className="flex items-center justify-between text-gray-700">
+                        <span className="text-xs sm:text-sm font-medium flex items-center gap-1.5">
+                          <TrophyIcon className="w-4 h-4 text-[#2fb6fd]" />
+                          {item.title}
+                        </span>
+                        <span className="text-xs bg-[#8b91f3]/10 text-[#8b91f3] px-2 py-0.5 rounded-full">
+                          {item.count} / {item.day}
+                        </span>
+                      </div>
+
+                      <div className="relative pt-1">
+                        <div className="flex gap-1.5 items-center">
+                          <div className="w-full h-2 sm:h-3 bg-[#8b91f3]/20 rounded-full overflow-hidden">
+                            <div
+                              style={{
+                                width: `${(item.count / item.day) * 100}%`,
+                              }}
+                              className="h-full bg-gradient-to-r from-[#2fb6fd] to-[#bc72f7] transition-all duration-500"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="flex items-center justify-center gap-8 animate-fade-in">
+                    <img
+                      className="h-32 w-32 object-contain"
+                      src="Images/NoChallenges.png"
+                    />
+                    <h1 className="text-3xl text-gray-800 font-bold">
+                      No Active Challenge
+                    </h1>
+                  </div>
+                )}
+              </div>
+              <hr className="my-5 mb-10 border-[#8b91f3]/20" />
+
+              <h3 className=" text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-gray-800 flex items-center gap-2">
                 <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />
                 Task Statistics
               </h3>
@@ -208,7 +270,9 @@ function Layout({ user, onLogout }) {
                       <div className="w-12 h-12 sm:w-16 sm:h-16 mx-auto sm:mb-4 rounded-full bg-[#8b91f3]/20 flex items-center justify-center">
                         <Clock className="w-6 h-6 sm:w-8 sm:h-8 text-[#8b91f3]" />
                       </div>
-                      <p className="text-sm text-gray-500">No recent activity</p>
+                      <p className="text-sm text-gray-500">
+                        No recent activity
+                      </p>
                       <p className="text-xs text-gray-400 mt-1">
                         Tasks will appear here once created
                       </p>

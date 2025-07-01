@@ -19,7 +19,7 @@ export async function createTask(req, res) {
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
-}
+};
 
 // GET LOGGED IN USER TASKS
 export async function getTasks(req, res) {
@@ -31,20 +31,20 @@ export async function getTasks(req, res) {
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
-}
+};
 
 // GET SINGLE TASK BY ID
 export async function getTaskById(req, res) {
   try {
     const task = await Task.findOne({ _id: req.params.id, owner: req.user.id });
     if (!task) {
-      res.status(404).json({ success: false, message: "Task not found" });
+     return res.status(404).json({ success: false, message: "Task not found" });
     }
     res.json({ success: true, task });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
-}
+};
 
 // UPDATE TASK
 export async function updateTask(req, res) {
@@ -69,7 +69,7 @@ export async function updateTask(req, res) {
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
-}
+};
 
 // DELETE TASK
 export async function deleteTask(req, res) {
@@ -87,4 +87,4 @@ export async function deleteTask(req, res) {
   } catch (error) {
     res.status(400).json({ success: false, message: error.message });
   }
-}
+};

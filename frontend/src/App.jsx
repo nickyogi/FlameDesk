@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import PendingPage from './pages/PendingPage';
 import CompletePage from './pages/CompletePage';
 import Profile from './Components/Profile';
+import Challenges from './Components/Challenges';
 
 
 
@@ -62,6 +63,7 @@ function App() {
 
         <Route element={currentUser ? <ProtectedLayout /> : <Navigate to="/login" replace />} >
           < Route path='/' element={<Dashboard />} />
+          < Route path='/challenges' element={<Dashboard />} />
           < Route path='/pending' element={<PendingPage />} />
           < Route path='/complete' element={<CompletePage />} />
           < Route path='/profile' element={<Profile user={currentUser} setCurrentUser={setCurrentUser} onLogout={handleLogout} />} />

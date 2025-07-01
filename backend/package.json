@@ -1,10 +1,10 @@
 {
-  "type" : "module",
+  "type": "module",
   "name": "backend",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start" : "nodemon server.js"
+    "start": "nodemon server.js"
   },
   "author": "Neeraj",
   "license": "ISC",
@@ -14,10 +14,12 @@
     "bcryptjs": "^3.0.2",
     "body-parser": "^2.2.0",
     "cors": "^2.8.5",
+    "cron": "^4.3.1",
     "dotenv": "^16.5.0",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.0",
+    "node-cron": "^4.2.0",
     "nodemon": "^3.1.10",
     "validator": "^13.15.15"
   }
