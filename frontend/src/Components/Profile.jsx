@@ -104,12 +104,12 @@ function Profile({ onLogout, setCurrentUser }) {
         </button>
 
         <div className="flex items-center gap-4 mb-8">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 via-indigo-400 to-purple-500 flex items-center justify-center text-white text-2xl font-bold shadow-md">
+          <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-blue-400 via-indigo-400 to-purple-500 flex items-center justify-center text-white text-xl sm:text-2xl font-bold shadow-md">
             {profile.name ? profile.name[0].toUpperCase() : "U"}
           </div>
 
           <div>
-            <h1 className="text-3xl font-bold text-gray-800">
+            <h1 className="text-xl sm:text-3xl font-bold text-gray-800">
               Account Settings
             </h1>
             <p className="text-gray-500 text-sm">
