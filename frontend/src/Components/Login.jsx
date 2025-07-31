@@ -72,7 +72,7 @@ function Login({ onSwitchMode, onSubmit }) {
           if (data.success) {
             onSubmit?.({ token, userId, ...data.user });
             toast.success("Session restored. Redirecting...");
-            navigate("/");
+            navigate("/home");
           } else {
             localStorage.clear();
             console.log("clearing");

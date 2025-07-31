@@ -24,3 +24,8 @@
   scrollbar-width: thin;
   scrollbar-color: #c0c0c0 #f0f0f0;
 }
+
+/* Add this in your global CSS file or inside a <style> tag */
+.custom-rotate-y {
+  transform: rotateY(180deg);
+}

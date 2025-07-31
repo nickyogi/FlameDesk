@@ -8,6 +8,7 @@ import PendingPage from './pages/PendingPage';
 import CompletePage from './pages/CompletePage';
 import Profile from './Components/Profile';
 import Challenges from './Components/Challenges';
+import EntryPage from './Components/EntryPage';
 
 
 
@@ -53,6 +54,8 @@ function App() {
   return (
     <div>
       <Routes>
+          < Route path='/' element={<EntryPage />} />
+          
         <Route path='/login' element={<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <Login onSubmit={handleAuthSubmit} onSwitchMode={() => {navigate('/signup')}} />
         </div>} />
@@ -62,7 +65,7 @@ function App() {
         </div>} />
 
         <Route element={currentUser ? <ProtectedLayout /> : <Navigate to="/login" replace />} >
-          < Route path='/' element={<Dashboard />} />
+          < Route path='/home' element={<Dashboard />} />
           < Route path='/challenges' element={<Dashboard />} />
           < Route path='/pending' element={<PendingPage />} />
           < Route path='/complete' element={<CompletePage />} />
