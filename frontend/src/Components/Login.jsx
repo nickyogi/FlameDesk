@@ -3,6 +3,7 @@ import { Eye, EyeOff, LogIn, Mail, Lock } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import GoogleLogin from "./GoogleLogin";
 
 const INITIAL_FORM = { email: "", password: "" };
 
@@ -171,6 +172,18 @@ function Login({ onSwitchMode, onSubmit }) {
           )}
         </button>
       </form>
+
+      <div className="w-full flex flex-col items-center space-y-4 mt-4">
+        {/* OR separator */}
+        <div className="w-full flex items-center justify-center">
+          <div className="flex-grow border-t border-purple-200" />
+          <span className="px-3 text-sm text-purple-500 font-medium"> or </span>
+          <div className="flex-grow border-t border-purple-200" />
+        </div>
+
+        {/* Google Login Button */}
+        <GoogleLogin onSubmit={onSubmit} />
+      </div>
 
       <p className="text-center text-sm text-gray-600 mt-6">
         Dont't have an account

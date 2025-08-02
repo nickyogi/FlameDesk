@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import About from "./About";
+import GoogleLogin from "./GoogleLogin";
 
-export default function EntryPage() {
+export default function EntryPage({ onSubmit }) {
+  const [loading, setLoading] = useState(true);
+
+  // Short loading time
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div
       id="home"
-      className="min-h-screen w-full relative bg-white overflow-hidden "
+      className={`${loading ? "h-screen" : "min-h-screen"} w-full relative bg-white overflow-hidden`}
     >
-      <nav className="flex absolute z-50 top-0 p-5 gap-5">
+      <div className={`fixed inset-0 z-50 flex items-center justify-center bg-white ${loading ? "block" : "hidden"} `}>
+        <div className="flex flex-col items-center space-y-4">
+          <div className="relative">
+            <div className="w-24 h-24 border-4 border-purple-300 border-dashed rounded-full animate-spin"></div>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <h1 className="text-2xl font-bold text-purple-600 animate-pulse">
+                Hello!
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <nav className="flex absolute z-40 top-0 p-5 gap-5">
         <div className="h-8 w-8 rounded-lg overflow-hidden">
           <img src="/Images/Logo - icon.png" alt="logo" />
         </div>
@@ -30,7 +54,6 @@ export default function EntryPage() {
             type="image/svg+xml"
             data="/Images/boy-character-floating.svg"
             alt="Floating boy character - Made by SVGator"
-            img=""
             width="150%"
             className="-translate-x-[50%] ml-40 sm:ml-64"
           >
@@ -41,7 +64,7 @@ export default function EntryPage() {
           </object>
         </div>
 
-        <div className="h-[50%] sm:h-[150%] w-[300%] sm:w-screen absolute top-[7%] sm:-top-12 left-[5%] sm:left-[42%] z-20 bg-gradient-to-r from-indigo-400 to-purple-600 rounded-full pointer-events-none overflow-hidden">
+        <div className="h-[50%] sm:h-[150%] w-[200%] sm:w-screen absolute top-[7%] sm:-top-12 -left-16 sm:left-[42%] z-20 bg-gradient-to-r from-indigo-400 to-purple-600 rounded-full pointer-events-none overflow-hidden">
           <img
             className="h-full w-full opacity-5 "
             src="/Images/texture.jpg"
@@ -50,7 +73,7 @@ export default function EntryPage() {
         </div>
 
         {/* Card */}
-        <div className="ml-16 sm:ml-32 mt-0 sm:mt-32  w-full relative z-20 md:w-1/2 max-w-md  rounded-2xl py-8 px-6">
+        <div className="ml-5 sm:ml-32 mt-0 sm:mt-32 w-full relative z-20 md:w-1/2 max-w-md rounded-2xl py-8 px-6">
           <div className="mb-6 text-center">
             <h1 className="text-6xl text-white font-extrabold uppercase">
               Flame Desk
@@ -75,6 +98,19 @@ export default function EntryPage() {
             >
               Sign Up
             </Link>
+            <div className="w-full flex flex-col items-center space-y-4 mt-4">
+              {/* OR separator */}
+              <div className="w-full flex items-center justify-center">
+                <div className="flex-grow border-t border-purple-200" />
+                <span className="px-3 text-sm text-purple-500 font-medium">
+                  or
+                </span>
+                <div className="flex-grow border-t border-purple-200" />
+              </div>
+
+              {/* Google Login Button */}
+              <GoogleLogin onSubmit={onSubmit} />
+            </div>
           </div>
 
           <p className="text-center text-xs text-zinc-300 mt-6">

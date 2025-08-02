@@ -38,7 +38,9 @@ function Layout({ user, onLogout }) {
       setError(err.message || "Could not load task");
       if (err.response?.status === 401) onLogout();
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
     }
   }, [onLogout]);
 
@@ -83,6 +85,8 @@ function Layout({ user, onLogout }) {
       </div>
     </div>
   );
+
+  
 
   if (loading) {
     return (

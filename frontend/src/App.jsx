@@ -28,7 +28,7 @@ function App() {
       avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(data.name || 'User')}&background=random`
     }
     setCurrentUser(user);
-    navigate('/', {replace: true}) 
+    navigate('/home', {replace: true});
   };
 
   const handleLogout = () => {
@@ -54,7 +54,7 @@ function App() {
   return (
     <div>
       <Routes>
-          < Route path='/' element={<EntryPage />} />
+          <Route  path='/' element={<EntryPage onSubmit={handleAuthSubmit} />} />
           
         <Route path='/login' element={<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <Login onSubmit={handleAuthSubmit} onSwitchMode={() => {navigate('/signup')}} />
@@ -64,7 +64,7 @@ function App() {
           <Signup onSubmit={handleAuthSubmit} onSwitchMode={() => {navigate('/login')}} />
         </div>} />
 
-        <Route element={currentUser ? <ProtectedLayout /> : <Navigate to="/login" replace />} >
+        <Route element={currentUser ? <ProtectedLayout /> : <Navigate to="/" replace />} >
           < Route path='/home' element={<Dashboard />} />
           < Route path='/challenges' element={<Dashboard />} />
           < Route path='/pending' element={<PendingPage />} />

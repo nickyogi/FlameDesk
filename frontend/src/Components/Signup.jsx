@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { UserPlus, Icon, Lock, User, Mail } from "lucide-react";
 import axios from "axios";
+import GoogleLogin from "./GoogleLogin";
 
 const API_URL = "https://flamedesk-backend.onrender.com";
 const INITIAL_FORM = { name: "", email: "", password: "" };
 
-function Signup({ onSwitchMode }) {
+function Signup({ onSwitchMode, onSubmit }) {
   const [formData, setFormData] = useState(INITIAL_FORM);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ text: "", type: "" });
@@ -104,6 +105,19 @@ function Signup({ onSwitchMode }) {
           )}
         </button>
       </form>
+
+      <div className="w-full flex flex-col items-center space-y-4 mt-4">
+  {/* OR separator */}
+  <div className="w-full flex items-center justify-center">
+    <div className="flex-grow border-t border-purple-200" />
+    <span className="px-3 text-sm text-purple-500 font-medium"> or </span>
+    <div className="flex-grow border-t border-purple-200" />
+  </div>
+
+  {/* Google Login Button */}
+  <GoogleLogin onSubmit={onSubmit} />
+</div>
+
       <p className="text-center text-sm text-gray-600 mt-6">
         Already have an account ?
         <button
