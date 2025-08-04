@@ -25,8 +25,7 @@ function Login({ onSwitchMode, onSubmit }) {
   ];
 
   const navigate = useNavigate();
-  // const url = "https://flamedesk-backend.onrender.com";
-  const url = "http://localhost:4000";
+  const url = "https://flamedesk-backend.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();

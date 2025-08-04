@@ -9,8 +9,7 @@ const createAxiosInstance = () => {
   }
 
   return axios.create({
-    // baseURL: "https://flamedesk-backend.onrender.com/api",
-    baseURL: "http://localhost:4000/api",
+    baseURL: "https://flamedesk-backend.onrender.com/api",
     headers: { Authorization: `Bearer ${token}` },
   });
 };
