@@ -4,7 +4,8 @@ import { auth, provider } from "../Utils/Firebase";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "https://flamedesk-backend.onrender.com";
+// const API_URL = "https://flamedesk-backend.onrender.com";
+const API_URL = "http://localhost:4000";
 
 
 function GoogleLogin({onSubmit}) {

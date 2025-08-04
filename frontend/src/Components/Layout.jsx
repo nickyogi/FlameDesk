@@ -16,6 +16,13 @@ function Layout({ user, onLogout }) {
 
   const axios = createAxiosInstance();
 
+  const getChallenges = async () => {
+    const { data } = await axios.get("challenges/gp");
+    setChallenges(data.challenges);
+    const activeChallenges = data.challenges.filter((item) => item.isActive);
+    setOnGoingChallenges(activeChallenges);
+  };
+
   const fetchTasks = useCallback(async () => {
     setError(null);
     try {
@@ -46,6 +53,7 @@ function Layout({ user, onLogout }) {
 
   useEffect(() => {
     fetchTasks();
+    getChallenges();
   }, [fetchTasks]);
 
   const stats = useMemo(() => {
@@ -121,11 +129,10 @@ function Layout({ user, onLogout }) {
       <div className="ml-0 xl:ml-64 lg:ml-64 md:ml-16 sm:pt-16 p-3 sm:p-4 md:p-4 transition-all flex duration-300">
         <div className="grid grid-cols-1 xl:grid-cols-10 gap-4 sm:gap-7">
           <div className="xl:col-span-7 space-y-3 sm:space-y-4">
-            {(location === "/" || location ==="/challenges") && <Challenges
+            {(location === "/home" || location ==="/challenges") && <Challenges
               challenges={challenges}
-              setChallenges={setChallenges}
               onGoingChallenges={onGoingChallenges}
-              setOnGoingChallenges={setOnGoingChallenges}
+              getChallenges={getChallenges}
             />}
             {location !== "/challenges" && <Outlet context={{ tasks, refreshTasks: fetchTasks }} />}
             

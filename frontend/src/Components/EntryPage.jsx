@@ -102,7 +102,7 @@ export default function EntryPage({ onSubmit }) {
               {/* OR separator */}
               <div className="w-full flex items-center justify-center">
                 <div className="flex-grow border-t border-purple-200" />
-                <span className="px-3 text-sm text-purple-500 font-medium">
+                <span className="px-3 text-sm text-white font-medium">
                   or
                 </span>
                 <div className="flex-grow border-t border-purple-200" />

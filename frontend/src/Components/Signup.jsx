@@ -3,7 +3,8 @@ import { UserPlus, Icon, Lock, User, Mail } from "lucide-react";
 import axios from "axios";
 import GoogleLogin from "./GoogleLogin";
 
-const API_URL = "https://flamedesk-backend.onrender.com";
+// const API_URL = "https://flamedesk-backend.onrender.com";
+const API_URL = "http://localhost:4000";
 const INITIAL_FORM = { name: "", email: "", password: "" };
 
 function Signup({ onSwitchMode, onSubmit }) {

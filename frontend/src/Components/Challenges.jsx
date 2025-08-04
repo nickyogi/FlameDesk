@@ -8,18 +8,11 @@ import ChallengeModal from "./ChallengeModal";
 import React, { useEffect, useState } from "react";
 import createAxiosInstance from "../Utils/axios";
 
-function Challenges({challenges, setChallenges, onGoingChallenges, setOnGoingChallenges}) {
+function Challenges({challenges, onGoingChallenges, getChallenges}) {
   
   const [addChallenge, setAddChallenge] = useState(false);
   const [challengeData, setChallengeData] = useState(null);
   const axios = createAxiosInstance();
-
-  const getChallenges = async () => {
-    const { data } = await axios.get("challenges/gp");
-    setChallenges(data.challenges);
-    const activeChallenges = data.challenges.filter((item) => item.isActive);
-    setOnGoingChallenges(activeChallenges);
-  };
 
   const activateChallenge = (data) => {
     if (data.isActive) return;
@@ -65,6 +58,7 @@ function Challenges({challenges, setChallenges, onGoingChallenges, setOnGoingCha
       const challenge = challenges.find((c) => c._id === id);
       await axios.put(`challenges/${id}/gp`, {
         ...challenge,
+        isFailed:  false,
         isActive: false,
         day: 0,
         count: 0,

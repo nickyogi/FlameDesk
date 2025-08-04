@@ -17,13 +17,10 @@ export async function checkAndFailChallenges() {
 
     for (let challenge of challenges) {
       const daysPassed = getDaysPassed(challenge.startedOn);
-      
-
       if (challenge.count < daysPassed) {
-        challenge.isFailed = true;  
-        await challenge.save()
-      } 
-    
+        challenge.isFailed = true;
+        await challenge.save();
+      }
     }
 
     console.log("✅ Challenge status updated successfully.");
@@ -32,7 +29,7 @@ export async function checkAndFailChallenges() {
   }
 }
 
-// Reset Challenges 
+// Reset Challenges
 async function resetChallenges() {
   try {
     const challenges = await Challenge.find({
@@ -42,13 +39,11 @@ async function resetChallenges() {
 
     for (let challenge of challenges) {
       const daysPassed = getDaysPassed(challenge.startedOn);
-      
 
       if (challenge.count === daysPassed) {
-        challenge.doneToday = false;  
+        challenge.doneToday = false;
         await challenge.save();
       }
-    
     }
 
     console.log("✅ Challenge task resetted successfully.");
@@ -58,7 +53,6 @@ async function resetChallenges() {
 }
 
 resetChallenges();
-
 
 // CRUD routes below...
 export async function createChallenge(req, res) {

@@ -15,7 +15,7 @@ function Sidebar({ user, tasks }) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const menuItems = [
-    { text: "Dashboard", path: "/", icon: <Home className="w-8 h-8 sm:w-5 sm:h-5" /> },
+    { text: "Dashboard", path: "/home", icon: <Home className="w-8 h-8 sm:w-5 sm:h-5" /> },
     { text: "Pending Tasks", path: "/pending", icon: <ListChecks className="w-8 h-8 sm:w-5 sm:h-5" /> },
     { text: "Completed Tasks", path: "/complete", icon: <CheckCircle2 className="w-8 h-8 sm:w-5 sm:h-5" /> },
     { text: "Challenges", path: "/challenges", icon: <TrophyIcon className="w-8 h-8 sm:w-5 sm:h-5" /> },

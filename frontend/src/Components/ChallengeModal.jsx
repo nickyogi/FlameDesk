@@ -54,6 +54,7 @@ function ChallengeModal({ refreshChallenges, data, setData, addChallenge, setAdd
         isActive: true,
         startedOn: today,
       };
+      console.log(today);
     }
 
     try {

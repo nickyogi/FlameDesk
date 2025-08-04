@@ -156,7 +156,6 @@ export async function googleLogin(req, res) {
     });
     }
 
-    
   } catch (err) {
     console.log(err);
     res.status(500).json({ success: false, message: "Server Error" });
